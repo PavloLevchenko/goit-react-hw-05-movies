@@ -107,6 +107,7 @@ dist
 .DS_Store
 .vscode/
 .idea/
+themovie.key.js
 
 # dependencies
 /node_modules

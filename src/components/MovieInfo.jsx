@@ -1,15 +1,15 @@
 import { Box } from 'components/Box';
-import { BsFileImage } from "react-icons/bs";
+import { MovieImage } from "components/MovieImage"
 
-export const MovieInfo = ({ title, score, overview, genres }) =>
-    <Box display="grid" gridTemplateColumns="100px 1fr">
-      <BsFileImage size={100} />
+export const MovieInfo = ({ title, overview, score, poster_path, genresString }) =>
+    <Box display="grid" gridTemplateColumns="342px 1fr">
+    <MovieImage poster_path={poster_path} />
       <Box>
           <h2>{title}</h2>
-          <p>User score:{score}</p>
+          <p>User score:{score}%</p>
           <p>Overview:</p>
           <span>{overview}</span>
           <p>Genres:</p>
-        {genres.join(", ")}
-                </Box>
+          {genresString}
       </Box>
+    </Box>

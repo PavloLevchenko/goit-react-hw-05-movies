@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "react-router-dom";
 import { useSearchMoviesQuery } from "api/themoviedb"
 import { MovieList } from "components/MovieList"
 
 // '/movies' - компонент Movies, страница поиска фильмов по ключевому слову.
-export const Movies = () => {
+const Movies = () => {
   const { register, handleSubmit } = useForm();
-  const [filmName, setFilmName] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filmName = searchParams.get("query");
+
   const { data, error, isLoading } = useSearchMoviesQuery(filmName,{skip:!filmName,});
-  const onSubmit = data => setFilmName(data.filmName)
+  const onSubmit = data => setSearchParams({ query:data.filmName })
   if (isLoading || error){return}
   return (
     <main>
@@ -17,7 +19,8 @@ export const Movies = () => {
       <input {...register("filmName")} />
       <button type="submit">Search</button>
       </form>
-      {data && <MovieList movies={data.results}/>}
+      {data && <MovieList movies={data.results} />}
     </main>
   );
 };
+export default Movies;

@@ -1,13 +1,15 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from '../GlobalStyle';
 import { Toaster } from 'react-hot-toast';
 import { Layout } from 'components/Layout';
 import { Cast } from 'components/Cast';
 import { Reviews } from 'components/Reviews';
-import { Home } from 'pages/Home';
-import { Movies } from 'pages/Movies';
-import { MovieDetails } from 'pages/MovieDetails';
-import { NotFound } from 'pages/NotFound';
+
+const Home = lazy(() => import('pages/Home'));
+const Movies = lazy(() => import('pages/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 export const App = () => {
   return (

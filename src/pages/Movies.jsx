@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 import { useSearchMoviesQuery } from "api/themoviedb"
@@ -11,7 +12,8 @@ const Movies = () => {
 
   const { data, error, isLoading } = useSearchMoviesQuery(filmName,{skip:!filmName,});
   const onSubmit = data => setSearchParams({ query:data.filmName })
-  if (isLoading || error){return}
+  if (isLoading) { return }
+  if (error) { toast.error("SearchMoviesError"); return}
   return (
     <main>
       <form onSubmit={handleSubmit(onSubmit)}>

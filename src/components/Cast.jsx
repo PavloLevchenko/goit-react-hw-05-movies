@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import { useParams } from "react-router-dom";
 import { useGetMovieCreditsQuery } from "api/themoviedb"
 import { CastList } from "components/CastList"
@@ -6,7 +7,9 @@ import { CastList } from "components/CastList"
 export const Cast = () => {
   const { movieId } = useParams();
   const { data, error, isLoading } = useGetMovieCreditsQuery(movieId);
-  if (isLoading || error){return}
+  
+  if (isLoading) { return }
+  if (error) { toast.error("GetMovieCreditsError"); return}
   return  (<main>
     <CastList casts={data.cast} />
   </main>)

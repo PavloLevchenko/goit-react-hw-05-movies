@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import { useParams } from "react-router-dom";
 import { useGetMovieRewiewsQuery } from "api/themoviedb"
 import { Box } from 'components/Box';
@@ -6,8 +7,9 @@ import { Box } from 'components/Box';
 export const Reviews = () => {
   const { movieId } = useParams();
   const { data, error, isLoading } = useGetMovieRewiewsQuery(movieId);
-  //console.log(data.results);
-  if (isLoading || error){return}
+
+  if (isLoading) { return }
+  if (error) { toast.error("GetMovieCreditsError"); return}
   return (data.results.length ?
      <Box as="ul">
       {data.results.map(({ id, author, content }) => {

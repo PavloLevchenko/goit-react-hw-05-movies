@@ -1,15 +1,19 @@
-import { toast } from 'react-hot-toast';
+import { ErrorToast } from "components/ErrorToast"
+import { Errors } from "components/Strings"
+import { Box } from 'components/Box';
+import { Loader } from "components/Loader"
 import { MovieList } from "components/MovieList"
 import { useGetTrendingQuery } from "api/themoviedb"
 
-//    '/' - компонент Home, домашняя страница со списком популярных кинофильмов.
 const Home = () => {
     const { data, error, isLoading } = useGetTrendingQuery();
-    if (isLoading) { return }
-    if (error) { toast.error("GetTrendingError"); return}
+
+    if (isLoading) { return <Loader/>}
+    if (error) { <ErrorToast msg={Errors.getTrendingError} />; return }
+    
     return (
-        <main>
+        <Box as="main">
             {data && <MovieList movies={data.results} title="Trending today" route="movies/" />}
-        </main>);
+        </Box>);
 }
 export default Home;

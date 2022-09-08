@@ -1,3 +1,3 @@
-// '*' - компонент NotFound, страница ошибки
-const NotFound = () => <main><h1>Произошла ошибка, страница не найдена</h1></main>
+import { Box } from 'components/Box';
+const NotFound = () => <Box as="main" p={4}><Box as="h1" p={4}>An error occurred. Page not found</Box></Box>
 export default NotFound;

@@ -1,16 +1,17 @@
-import { toast } from 'react-hot-toast';
 import { useParams } from "react-router-dom";
 import { useGetMovieCreditsQuery } from "api/themoviedb"
 import { CastList } from "components/CastList"
+import { ErrorToast } from "components/ErrorToast"
+import { Errors, Msg } from "components/Strings"
 
-// /movies/:movieId/cast - компонент Cast, информация о актерском составе. Рендерится на странице MovieDetails.
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const { data, error, isLoading } = useGetMovieCreditsQuery(movieId);
-  
+  console.log(data);
   if (isLoading) { return }
-  if (error) { toast.error("GetMovieCreditsError"); return}
-  return  (<main>
-    <CastList casts={data.cast} />
-  </main>)
+  if (error) { <ErrorToast msg={Errors.getMovieCreditsError} />; return }
+
+  return (data.cast.length?<CastList casts = {data.cast } />:<p>{Msg.noCasts}</p>)
 }  
+
+export default Cast;

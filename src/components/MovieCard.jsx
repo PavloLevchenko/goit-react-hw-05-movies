@@ -1,24 +1,21 @@
-import { toast } from 'react-hot-toast';
 import { useParams } from "react-router-dom";
 import { MovieInfo } from 'components/MovieInfo';
 import { MovieDetails } from "components/MovieDetails"
+import { ErrorToast } from "components/ErrorToast"
+import { Errors } from "components/Strings"
 import { useGetMovieDetailsQuery } from "api/themoviedb"
-import { genresHelper } from "api/genresHelper"
+import { movieInfoHelper } from "api/helpers"
 
 export const MovieCard = () => {
   const { movieId } = useParams();
   const { data, error, isLoading } = useGetMovieDetailsQuery(movieId);
 
   if (isLoading) { return }
-  if (error) { toast.error("GetMovieDetailsError"); return}
-  const { title, overview, vote_average, poster_path, genres } = data;
-  const score = Math.round(vote_average * 10);
-  const genresString = genresHelper(genres);
-  const info = { title, overview, score, poster_path, genresString };
+  if (error) { <ErrorToast msg={Errors.getMovieDetailsError} />; return }
 
   return (
     <>
-    <MovieInfo {...info} />
+    <MovieInfo {...movieInfoHelper(data)} />
     <MovieDetails />
     </>
   );}

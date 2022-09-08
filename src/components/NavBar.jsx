@@ -4,8 +4,8 @@ import { navItems } from 'components/NavDeclarations';
 
 export const NavBar = () => {
   return (
-    <Box as="header" p={4} borderBottom="1px solid black">
-      <Box as="nav" display="flex" flexDirection="column">
+    <Box as="header" p={4} borderBottom={"1px solid black"}>
+      <Box as="nav" display="flex">
         {navItems.map(({ href, text}) => (
           <NavItem to={href} key={href}>{text}</NavItem>
         ))}

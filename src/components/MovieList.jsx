@@ -5,8 +5,9 @@ import { Box } from 'components/Box';
 export const MovieList = ({ movies, title = "", route = "" }) => {
   const location = useLocation();
   return (
-    <Box as="ul">
-      <h1>{title}</h1>
+    <>
+      <Box as="h1" mb={4} mt={4}>{title}</Box>
+          <Box as="ul" pl={4}>
       {movies.map(({ id, title }) => {
         return (
           <Box key={id} as="li" p={2}>
@@ -15,5 +16,6 @@ export const MovieList = ({ movies, title = "", route = "" }) => {
         );
       }, "")}
       </Box>
+    </>
   );
 };

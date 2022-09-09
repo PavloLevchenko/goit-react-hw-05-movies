@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 import { Box } from 'components/Box';
+import PropTypes from 'prop-types';
 
 export const MovieSearchForm = ({disabled}) => {
     const { register, handleSubmit } = useForm();
@@ -15,3 +16,6 @@ export const MovieSearchForm = ({disabled}) => {
     </Box>
     );
 };
+Notification.MovieSearchForm = PropTypes.shape({
+  disabled: PropTypes.bool
+})

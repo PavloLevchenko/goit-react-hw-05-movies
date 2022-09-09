@@ -7,7 +7,7 @@ import { Errors, Msg } from "components/Strings"
 const Cast = () => {
   const { movieId } = useParams();
   const { data, error, isLoading } = useGetMovieCreditsQuery(movieId);
-  console.log(data);
+
   if (isLoading) { return }
   if (error) { <ErrorToast msg={Errors.getMovieCreditsError} />; return }
 

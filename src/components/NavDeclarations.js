@@ -1,5 +1,7 @@
 export const home = '/';
 
+export const basename = '/goit-react-hw-05-movies/';
+
 export const baseImgUrl = 'https://image.tmdb.org/t/p/w';
 
 export const navItems = [

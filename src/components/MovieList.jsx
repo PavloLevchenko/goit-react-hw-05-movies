@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import { Box } from 'components/Box';
+import PropTypes from 'prop-types';
 
 export const MovieList = ({ movies, title = "", route = "" }) => {
   const location = useLocation();
@@ -19,3 +20,8 @@ export const MovieList = ({ movies, title = "", route = "" }) => {
     </>
   );
 };
+Notification.MovieList = 
+  PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  route: PropTypes.string.isRequired
+})

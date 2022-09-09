@@ -11,7 +11,7 @@ const Reviews = () => {
   if (isLoading) { return }
   if (error) { <ErrorToast msg={Errors.getMovieRewiewsError} />; return }
 
-  return (data.results.length ?
+  return (data?.results.length ?
      <Box as="ul" ml={4}>
       {data.results.map(({ id, author, content }) => {
         return (

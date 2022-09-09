@@ -11,7 +11,7 @@ const Cast = () => {
   if (isLoading) { return }
   if (error) { <ErrorToast msg={Errors.getMovieCreditsError} />; return }
 
-  return (data.cast.length?<CastList casts = {data.cast } />:<p>{Msg.noCasts}</p>)
+  return (data?.cast.length?<CastList casts = {data.cast } />:<p>{Msg.noCasts}</p>)
 }  
 
 export default Cast;
